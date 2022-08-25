@@ -1,5 +1,8 @@
 package leetcode.arrays;
 
+import java.util.Arrays;
+import java.util.HashMap;
+
 /**
  * <a href="https://leetcode.com/problems/build-array-from-permutation/">https://leetcode.com/problems/build-array-from-permutation/</a>
  * Given a zero-based permutation nums (0-indexed), build an array ans of the same length where ans[i] = nums[nums[i]] for each 0 <= i < nums.length and return it.
@@ -37,11 +40,25 @@ package leetcode.arrays;
  */
 public class ArrayFromPermutation {
     public static void main(String[] args) {
-
+        System.out.println(Arrays.toString(buildArrayBruteForce(new int[]{0, 2, 1, 5, 3, 4})));
+        System.out.println(Arrays.toString(buildArrayBruteForce(new int[]{5,0,1,2,3,4})));
     }
 
-    public int[] buildArray(int[] nums) {
+    //Extra Space used, with hashmap,
+    // SpaceComplexity O(n) + O(n) + O(n) = 3O(n) = O(n)
 
-        return new int[0];
+    //TimeComplexity used 2 loop consecutively
+    // O(n)
+    //Not good approach in terms of space and time complexity
+    public static int[] buildArrayBruteForce(int[] nums) {
+        int[] ans = new int[nums.length];
+        HashMap<Integer, Integer> numsMap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            numsMap.put(i,nums[i]);
+        }
+        for (int i = 0; i < ans.length; i++) {
+            ans[i] = nums[numsMap.get(i)];
+        }
+        return ans;
     }
 }

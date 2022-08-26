@@ -30,7 +30,7 @@ import java.util.HashMap;
  */
 public class RansomNote {
     public static void main(String[] args) {
-        System.out.println(canConstruct("aab", "baa"));
+        System.out.println(canConstructBest("aab", "baa"));
         System.out.println(canConstruct("aa", "ab"));
         System.out.println(canConstruct("aa", "aab"));
     }
@@ -63,9 +63,9 @@ public class RansomNote {
     }
 
     //TODO Learn how to index with letters in Ascii values
-    public boolean canConstructBest(String ransomNote, String magazine) {
-        int[] nextIndexToStartLooking = new int[26];
-        for (char curr : ransomNote.toCharArray()) {
+    public static boolean canConstructBest(String ransomNote, String magazine) {
+        int[] nextIndexToStartLooking = new int[26]; // we have 26 letters in English Alphabet
+        for (char curr : ransomNote.toCharArray()) { // loop through each item of the ransomNote string
             int index = magazine.indexOf(curr, nextIndexToStartLooking[curr - 97]);
             if (index == -1)
                 return false;
